@@ -18,14 +18,4 @@ function generateCode($length = 6)
 	}
 	return $code;
 }
-
-if (!isset($_COOKIE['shop_bag'])) {
-	//setcookie('shop_bag', json_encode($bag), time() + 3600);
-} else {
-	$data = json_encode(json_decode($_COOKIE['shop_bag'], true));
-}
-
-
-
-
 ?>

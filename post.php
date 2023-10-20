@@ -13,10 +13,10 @@ if (isset($_GET['post'])) {
 }
 
 
-if (mysqli_query($link, "SELECT `group_slaves` FROM `posts` WHERE `group_id` LIKE '$group_id'")->fetch_array() == 0) {
+if (mysqli_query($link, "SELECT `group_slaves` FROM `group` WHERE `group_id` LIKE '$group_id'")->fetch_array() == 0) {
     echo "Вы еще не добавили рабов";
 } else {
-    $result = mysqli_query($link, "SELECT `group_slaves` FROM `posts` WHERE `group_id` LIKE '$group_id'");
+    $result = mysqli_query($link, "SELECT `group_slaves` FROM `group` WHERE `group_id` LIKE '$group_id'");
     while ($data = $result->fetch_assoc()) {
         $data['group_slaves'] = str_replace('[', ',', $data['group_slaves']);
         $data['group_slaves'] = str_replace(']', ',', $data['group_slaves']);
