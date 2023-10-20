@@ -14,10 +14,10 @@ if (!isset($_GET['id'])) {
         $user_name = $user_name1['user_name'];
     }
     echo "</br> Группы в которых он участвует: </br>";
-    $group_user_admin2 = mysqli_query($link, "SELECT `group_name` FROM `groups` WHERE `group_user_admin` LIKE '%$user_id%'"); //менеджер
-    while ($group_user_admin1 = $group_user_admin2->fetch_assoc()) {
-        $group_user_admin2 = mysqli_query($link, "SELECT `group_id` FROM `groups` WHERE `group_user_admin` LIKE '%$user_id%'");
-        $group_user_admin = $group_user_admin1['group_name'];
+
+    $group_name2 = mysqli_query($link, "SELECT `group_name` FROM `groups` WHERE `group_user_admin` LIKE '%$user_id%'"); //менеджер
+    while ($group_name1 = $group_name2->fetch_assoc()) {
+        $group_name = $group_name1['group_name'];
         $group_id2 = mysqli_query($link, "SELECT `group_id` FROM `groups` WHERE `group_name` LIKE '$group_name'");
         while ($group_id1 = $group_id2->fetch_assoc()) {
             $group_id = $group_id1['group_id'];
