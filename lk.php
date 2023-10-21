@@ -1,3 +1,16 @@
+<script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
+<script type="text/javascript">
+    VK.init({
+        apiId: ВАШ_API_ID
+    });
+</script>
+
+
+
+
+
+
+
 <?php
 // Страница регистрации нового пользователя
 
@@ -66,7 +79,7 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
             }
 
 
-            
+
 
 
         }
@@ -106,6 +119,17 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
 <form method="POST">
 <input name="reg" type="submit" value="Регистрация">
 </form>
+
+<div id="vk_auth"></div>
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168" charset="windows-1251"></script>
+<script type="text/javascript">
+    VK.init({ apiId: 51775850 });
+</script>
+
+<div id="vk_auth"></div>
+<script type="text/javascript">
+    VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
+</script>
 ');
     if (isset($_POST['submitt'])) {
         $loginn = $_POST['loginn'];
@@ -135,6 +159,17 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
     <form method="POST">
     <input name="submitt" type="submit" value="Войти">
     </form>
+
+    <div id="vk_auth"></div>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168" charset="windows-1251"></script>
+    <script type="text/javascript">
+        VK.init({ apiId: 51775850 });
+    </script>
+
+    <div id="vk_auth"></div>
+    <script type="text/javascript">
+        VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
+    </script>
     ');
     if (isset($_POST['username'])) {
         $usermane = $_POST['username'];
@@ -156,7 +191,31 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
     if (isset($_POST['submitt'])) {
         echo '<script> window.location.href = "lk.php?register=0"; </script>';
     }
+
+
 }
 
+if (isset($_GET['uid'])) {
+    $first_name = $_GET['first_name'];
+    $last_name = $_GET['last_name'];
+    $user_vk_name = $first_name . '   ' . $last_name;
+    $uid = $_GET['uid'];
+    echo 'привет' . $first_name;
+    echo $uid;
 
+    if (mysqli_query($link, "SELECT `user_login` FROM `user` WHERE `user_login` = '$uid'")->fetch_array() != 0) {
+        mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
+        echo '<script> window.location.href = "lk.php"; </script>';
+
+    } else {
+        mysqli_query($link, "INSERT INTO `user`(`user_name`, `user_pass`, `user_login`,`user_role`) VALUES ('$user_vk_name','$uid','$uid','2')");
+        $hashh = $_COOKIE["hash"];
+        mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
+        echo '<script> window.location.href = "lk.php"; </script>';
+    }
+
+
+
+
+}
 ?>
