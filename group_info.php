@@ -218,7 +218,7 @@
                             echo '<p><h3>' . $task_name1['task_name'] . '.</h3> </br>   Необходимое количество выполнений - ' . $task_goal . '.</br> Крайнее время выполнения задачи  ' . $task_time;
                             echo "</p>Приступившие к выполнению:    ";
 
-                            $suma = 0;
+                            $suma[$group_tasks_count] = 0;
 
                             $task_user_state3 = mysqli_query($link, "SELECT `user_name`,`user_count` FROM `user` WHERE `user_count` LIKE '%$group_tasks[$group_tasks_count]%'");
                             while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
@@ -233,12 +233,13 @@
                               //print_r($task_user_state);
                               while (-1 < $task_user_state_count) {
                                 if ($task_user_state[$task_user_state_count] == $group_tasks[$group_tasks_count]) {
-                                  $suma = $suma + 1;
+                                  $suma[$group_tasks_count] = $suma[$group_tasks_count] + 1;
                                 }
 
                                 $task_user_state_count = $task_user_state_count - 1;
                               }
-                              echo $suma . '  выполнений';
+                              echo $suma[$group_tasks_count] . '  выполнений';
+
 
 
 
@@ -411,9 +412,56 @@
 
           </div>
         </div>
+        <?php
+
+        sort($suma);
+        $coc = count($suma);
+        //print_r($suma); 
+        
+
+
+        ?>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load("current", { packages: ["corechart"] });
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+
+              ['Task', 'Hours per Day'],
+              <?php
+
+
+
+              for ($i = 0; $i < $coc; $i++) {
+
+                echo "
+                ['Задача $i', $suma[$i]],";
+
+              }
+
+
+              ?>
+
+            ]);
+
+            var options = {
+              title: 'Продуктивность ',
+              is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+          }
+        </script>
         <div class="col-md-6 ">
+
+
+
+
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <div id="piechart_3d" style="width: 100%; height: 500px; backgroundColor.fill: none"></div>
           </div>
         </div>
 
