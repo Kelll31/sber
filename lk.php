@@ -22,7 +22,13 @@ if (!isset($_GET['register'])) {
     echo '<script> window.location.href = "lk.php?register=0"; </script>';
 }
 if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$hashh'")->fetch_array() != 0) {
-
+    $checkcart2 = mysqli_query($link, "SELECT `user_count` FROM `user` WHERE `user_hash` LIKE '$hashh'");
+    while ($checkcart1 = $checkcart2->fetch_assoc()) {
+        $checkcart = $checkcart1["user_count"];
+    }
+    if (empty($checkcart)) {
+        mysqli_query($link, "UPDATE `user` SET `user_count`=',' WHERE `user_hash` LIKE '$hashh'");
+    }
     $user_id1 = mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$hashh'");
     while ($user_id2 = $user_id1->fetch_assoc()) {
         $user_id = $user_id2["user_id"];
