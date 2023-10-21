@@ -105,53 +105,47 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-5 col-lg-4 offset-md-1">
-          <div class="form_container">
-            <div class="heading_container">
+          <div class="row">
 
 
-              <?php
-              // Страница регистрации нового пользователя
-              
+            <?php
+            // Страница регистрации нового пользователя
+            
 
-              $hashh = $_COOKIE["hash"];
-              $reg = $_GET['register'];
-              if (!isset($_GET['register'])) {
-                echo '<script> window.location.href = "lk.php?register=0"; </script>';
+            $hashh = $_COOKIE["hash"];
+            $reg = $_GET['register'];
+            if (!isset($_GET['register'])) {
+              echo '<script> window.location.href = "lk.php?register=0"; </script>';
+            }
+
+
+            if (isset($_GET['uid'])) {
+              $first_name = $_GET['first_name'];
+              $last_name = $_GET['last_name'];
+              $user_vk_name = $first_name . '   ' . $last_name;
+              $uid = $_GET['uid'];
+              echo '<div class="heading_container"> привет' . $first_name . '</div>';
+              echo $uid;
+
+              if (mysqli_query($link, "SELECT `user_login` FROM `user` WHERE `user_login` = '$uid'")->fetch_array() != 0) {
+                mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
+                echo '<script> window.location.href = "lk.php"; </script>';
+
+              } else {
+                mysqli_query($link, "INSERT INTO `user`(`user_name`, `user_pass`, `user_login`,`user_role`) VALUES ('$user_vk_name','$uid','$uid','2')");
+                $hashh = $_COOKIE["hash"];
+                mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
+                echo '<script> window.location.href = "lk.php"; </script>';
               }
 
 
-              if (isset($_GET['uid'])) {
-                $first_name = $_GET['first_name'];
-                $last_name = $_GET['last_name'];
-                $user_vk_name = $first_name . '   ' . $last_name;
-                $uid = $_GET['uid'];
-                echo 'привет' . $first_name;
-                echo $uid;
 
-                if (mysqli_query($link, "SELECT `user_login` FROM `user` WHERE `user_login` = '$uid'")->fetch_array() != 0) {
-                  mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
-                  echo '<script> window.location.href = "lk.php"; </script>';
 
-                } else {
-                  mysqli_query($link, "INSERT INTO `user`(`user_name`, `user_pass`, `user_login`,`user_role`) VALUES ('$user_vk_name','$uid','$uid','2')");
-                  $hashh = $_COOKIE["hash"];
-                  mysqli_query($link, "UPDATE `user` SET `user_hash`='$hashh' WHERE `user_login` LIKE '$uid'");
-                  echo '<script> window.location.href = "lk.php"; </script>';
-                }
+            }
+            ?>
 
 
 
-
-              }
-              ?>
-
-
-
-
-              <h2>
-
-              </h2>
-            </div>
             <?php
 
             if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$hashh'")->fetch_array() != 0) {
@@ -170,7 +164,8 @@
               $name = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_hash` LIKE '$hashh'");
               while ($row = $name->fetch_assoc()) {
 
-                echo ("Привет   " . $row['user_name'] . "</br>");
+                echo ("<dl>
+                <dt> Привет   " . $row['user_name'] . "</dt> ");
               }
               $role2 = mysqli_query($link, "SELECT `user_role` FROM `user` WHERE `user_hash` LIKE '$hashh'");
               while ($role1 = $role2->fetch_assoc()) {
@@ -179,13 +174,19 @@
 
 
               if ($role == "0") { // Права доступа    админ
-                echo ("Права доступа    админ   </br>");
+                echo ("Права доступа    админ   ");
 
 
               } else if ($role == "1") { // Права доступа    менеджер групп
             
-                echo ("<a href=edit.php?mode=0 >создать группу </a></br></br>");
-                echo ("<a href=edit.php?mode=1 >создать задачу </a></br></br>");
+                echo '
+                
+ 
+
+  <dt><a class href=edit.php?mode=0 ><button > создать группу </button></a></dt>
+  <dt><a class href=edit.php?mode=1 ><button href=edit.php?mode=1">создать задачу</button></a></dt>
+              
+              ';
                 $group_name2 = mysqli_query($link, "SELECT `group_name` FROM `groups` WHERE `group_user_admin` LIKE '$user_id'");
                 while ($group_name1 = $group_name2->fetch_assoc()) {
                   $group_name = $group_name1['group_name'];
@@ -206,15 +207,14 @@
                     // echo ($data['group_slaves']);
             
 
-                    echo ("Права доступа:    менеджер  -    группа <a href='group_info.php?id=" . $group_id . "'>" . $group_name . "</a></br> участники:    ");
+                    echo ("<dt>Права доступа:    менеджер  -    </dt><dt> <a href='group_info.php?id=" . $group_id . "'>Группа " . $group_name . "</a></dt> <dt>участники:    </dt> ");
                     while (-1 < $i) {
                       $result = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_id` LIKE '$cart[$i]'"); // имя юзеров
                       while ($row = $result->fetch_assoc()) {
-                        echo "<a href='user_info.php?id=" . $cart[$i] . "'>" . $row['user_name'] . "</a> , ";
+                        echo "<dt><a href='user_info.php?id=" . $cart[$i] . "'>" . $row['user_name'] . "</a> </dt>  ";
                       }
                       $i = $i - 1;
                     }
-                    echo ("</br>");
                   }
 
 
@@ -237,9 +237,12 @@
                 }
 
               }
-              echo ('<form method="POST">
-<input name="exit" type="submit" value="выйти">
-</form>');
+              echo ('
+              <dt>         
+              <form method="POST">
+              <button name="exit" type="submit">Выйти</button>
+              </form>
+              </dt>');
 
               if (isset($_POST['exit'])) {
                 mysqli_query($link, "UPDATE `user` SET `user_hash`='0' WHERE `user_hash` LIKE '$hashh'");
@@ -350,19 +353,19 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
             }
             ?>
 
-
-
+            </dl>
 
           </div>
-          <div class="col-md-6 col-lg-7 px-0">
-            <div class="map_container">
-              <div class="map">
-                <div id="googleMap"></div>
-              </div>
+        </div>
+        <div class="col-md-6 col-lg-7 px-0">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- end contact section -->

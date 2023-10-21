@@ -70,6 +70,7 @@
     </header>
     <!-- end header section -->
   </div>
+
   <!-- О нас section -->
 
   <section class="about_section layout_padding layout_margin">
@@ -106,7 +107,7 @@
     '$id'"); // имя
                   while ($group_id1 = $group_id2->fetch_assoc()) {
                     $group_id = $group_id1["group_name"];
-                    echo "Группа - " . $group_id1['group_name'] . "   ";
+                    echo "<h4>Группа - " . $group_id1['group_name'] . "</h4>  ";
                   }
 
                   $group_user_admin2 = mysqli_query($link, "SELECT `group_user_admin` FROM `groups` WHERE `group_id` LIKE '$id'");
@@ -119,7 +120,7 @@
 
                     $group_user_admin = $group_user_admin1['group_user_admin'];
                     if ($group_user_admin == $user_id) {
-                      echo "Вы менеджер этой группы ";
+                      echo "<h6>доступ менеджера</h6>";
 
 
 
@@ -136,12 +137,16 @@
                 
 
                         echo ('
-                        <form method="POST">
-                Добавить участника: <input name="text" type="textarea" value="Введите имя"> 
+                        <div class="info_section form input" style="
+                        width: -webkit-fill-available;
+                    ">
+                        <form method="POST" > 
+                <input name="text" type="text" placeholder="Добавить участника (имя)"> 
                 </form>
                 <form method="POST">
-                Добавить задачу: <input name="task_add" type="textarea" value="Введите название">
-                </form>');
+                <input name="task_add" type="textarea" placeholder="Добавить задачу (название)">
+                </form>
+                </div>');
 
                         if (!isset($_POST['text'])) {
                         } else {
@@ -168,7 +173,7 @@
 
 
 
-                        echo ("Задачи:   </br>");
+                        echo ("<p>Задачи:   </p>");
 
 
                         $group_tasks3 = mysqli_query($link, "SELECT `group_tasks` FROM `groups` WHERE `group_id` LIKE '$id'");
@@ -210,7 +215,7 @@
                               $task_time = $task_time1["task_time"];
                             }
 
-                            echo '<p><h2>' . $task_name1['task_name'] . '.</h2> </br>   Необходимое количество выполнений - ' . $task_goal . '.</br> Крайнее время выполнения задачи  ' . $task_time;
+                            echo '<p><h3>' . $task_name1['task_name'] . '.</h3> </br>   Необходимое количество выполнений - ' . $task_goal . '.</br> Крайнее время выполнения задачи  ' . $task_time;
                             echo "</p>Приступившие к выполнению:    ";
 
                             $suma = 0;
@@ -244,9 +249,24 @@
 
 
 
-                            echo '<form method="POST">
-                        <input name="delete_task' . $group_tasks_count . '" type="submit" value="удалить задачу">
-                        </form>';
+                            echo '
+                            <form method="POST" >
+                        
+                       <a> <button name="delete_task' . $group_tasks_count . '" type="submit" value="удалить задачу" style=    " width: 100%;
+                        text-align: center;
+                        display: contents;
+                        padding: 10px 55px;
+                        background-color: #f8842b;
+                        color: #ffffff;
+                        border-radius: 0;
+                        -webkit-transition: all 0.3s;
+                        transition: all 0.3s;
+                        border: 1px solid #f8842b;
+                        margin-top: 15px;">
+
+                        удалить</button></a>
+                        </form>
+                        ';
                             if (!isset($_POST['delete_task' . $group_tasks_count . ''])) {
                             } else {
                               $group_tasks[$group_tasks_count] = "";
@@ -264,14 +284,32 @@
 
 
                         $i = count($cart, true) - 1;
-                        echo ("</br> Участники:    </br>");
+                        echo ("</br> Участники:  <dl> <dt>  ");
                         while (-1 < $i) {
                           $result = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_id` LIKE '$cart[$i]'"); // имя юзеров
                           while ($row = $result->fetch_assoc()) {
-                            echo "<a href='user_info.php?id=" . $cart[$i] . "'>" . $row['user_name'] . "</a>";
-                            echo '<form method="POST">
-                        <input name="delete' . $i . '" type="submit" value="удалить">
-                        </form>';
+                            echo "<dt>  <a href='user_info.php?id=" . $cart[$i] . "'>" . $row['user_name'] . "</a>";
+                            echo '
+                            
+
+                            <form method="POST" >
+                        
+                       <a> <button name="delete' . $i . '" type="submit" value="удалить" style=    " width: 100%;
+                        text-align: center;
+                        display: contents;
+                        padding: 10px 55px;
+                        background-color: #f8842b;
+                        color: #ffffff;
+                        border-radius: 0;
+                        -webkit-transition: all 0.3s;
+                        transition: all 0.3s;
+                        border: 1px solid #f8842b;
+                        margin-top: 15px;">
+
+                        удалить</button></a>
+                        </form>
+                        </dt>  </dl>
+                        ';
                             if (!isset($_POST['delete' . $i . ''])) {
                             } else {
                               $cart[$i] = "";
@@ -375,50 +413,7 @@
         </div>
         <div class="col-md-6 ">
           <div class="img-box">
-            <div>
-              <canvas id="myChart"></canvas>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-            <script>
-              const ctx = document.getElementById('myChart');
-
-              new Chart(ctx, {
-                type: 'bar',
-                data: {
-                  labels: [<?php echo "'nigers','white','hui','dota'"; ?>],
-                  datasets: [{
-                    label: '# of Votes',
-                    data: [<?php echo "'12','11','9','19'" ?>],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    myScale: {
-                      type: 'logarithmic',
-                      position: 'right', // `axis` is determined by the position as `'y'`
-                    }
-                  }
-                }
-              });
-              const img = new Image();
-img.src = 'https://example.com/my_image.png';
-img.onload = () => {
-  const ctx = document.getElementById('canvas').getContext('2d');
-  const fillPattern = ctx.createPattern(img, 'repeat');
-
-  const chart = new Chart(ctx, {
-    data: {
-      labels: ['Item 1', 'Item 2', 'Item 3'],
-      datasets: [{
-        data: [10, 20, 30],
-        backgroundColor: fillPattern
-      }]
-    }
-  });
-};
-            </script>
+            <img src="images/about-img.png" alt="">
           </div>
         </div>
 

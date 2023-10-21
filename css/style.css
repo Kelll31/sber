@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
@@ -657,10 +657,20 @@ a:focus {
   height: 50px;
   margin-bottom: 25px;
   padding-left: 15px;
-  background-color: transparent;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: #f8842b;
   outline: none;
-  color: #000000;
-  border: 1px solid #a5a5a5;
+  color: #ffffff;
+  border: 1px solid #f8842b;
+  border-radius: 5px;
 }
 
 .contact_section input::-webkit-input-placeholder {
@@ -682,9 +692,30 @@ a:focus {
 .contact_section input.message-box {
   height: 120px;
 }
-
+.boxed-btn3 {
+  background: #00D363;
+  color: #fff;
+  display: inline-block;
+  padding: 13px 29px 13px 29px;
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: 0;
+  border: 1px solid transparent;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff !important;
+  text-transform: capitalize;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
 .contact_section button {
-  font-family: "Poppins", sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   display: inline-block;
   padding: 10px 65px;
   background-color: #7335b7;
