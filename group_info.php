@@ -70,7 +70,6 @@
     </header>
     <!-- end header section -->
   </div>
-
   <!-- О нас section -->
 
   <section class="about_section layout_padding layout_margin">
@@ -376,7 +375,50 @@
         </div>
         <div class="col-md-6 ">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <div>
+              <canvas id="myChart"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+              const ctx = document.getElementById('myChart');
+
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: [<?php echo "'nigers','white','hui','dota'"; ?>],
+                  datasets: [{
+                    label: '# of Votes',
+                    data: [<?php echo "'12','11','9','19'" ?>],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    myScale: {
+                      type: 'logarithmic',
+                      position: 'right', // `axis` is determined by the position as `'y'`
+                    }
+                  }
+                }
+              });
+              const img = new Image();
+img.src = 'https://example.com/my_image.png';
+img.onload = () => {
+  const ctx = document.getElementById('canvas').getContext('2d');
+  const fillPattern = ctx.createPattern(img, 'repeat');
+
+  const chart = new Chart(ctx, {
+    data: {
+      labels: ['Item 1', 'Item 2', 'Item 3'],
+      datasets: [{
+        data: [10, 20, 30],
+        backgroundColor: fillPattern
+      }]
+    }
+  });
+};
+            </script>
           </div>
         </div>
 

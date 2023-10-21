@@ -37,7 +37,6 @@ if (!isset($_GET['id'])) {
             $group_id = $group_id1['group_id'];
         }
 
-        $suma = 0;
         $task_user_state3 = mysqli_query($link, "SELECT `user_count` FROM `user` WHERE `user_id` LIKE '$user_id'");
         while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
             $task_user_state2['user_count'] = str_replace('[', ',', $task_user_state2['user_count']);
@@ -48,18 +47,32 @@ if (!isset($_GET['id'])) {
             $task_user_state = explode(",", $task_user_state2['user_count']);
             $task_user_state_count = count($task_user_state, true) - 1;
 
-            print_r($task_user_state);
-        }
 
-        while (-1 < $task_user_state_count) {
-            if ($task_user_state[$task_user_state_count] == $group_id2) {
-                $suma = $suma + 1;
+            $bubuq = [];
+            foreach ($task_user_state as $key => $value) {
+                if (empty($bubuq[$value])) {
+                    $bubuq[$value] = 0;
+                } else {
+                }
+                $bubuq[$value] = $bubuq[$value] + 1;
+
             }
 
-            $task_user_state_count = $task_user_state_count - 1;
+
+            foreach ($bubuq as $key => $value) {
+                //echo $key . "\t=>\t" . $value . "\n";
+
+                $task_name3 = mysqli_query($link, "SELECT `task_name` FROM `tasks` WHERE `task_id` LIKE '$key'");
+                while ($task_name2 = $task_name3->fetch_assoc()) {
+                    $task_name = $task_name2['task_name'];
+                    echo $task_name . "- выполнено " . $value . "    раз;  ";
+                }
+
+            }
+
         }
 
-        echo $suma . '  выполнений';
+
 
 
 
