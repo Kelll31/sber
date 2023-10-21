@@ -26,6 +26,32 @@ if (!isset($_GET['id'])) {
         $group_user_admin = $group_user_admin1['group_user_admin'];
         if ($group_user_admin == $user_id) {
             echo "Вы менеджер этой группы ";
+
+            $task_user_state3 = mysqli_query($link, "SELECT `task_user_state` FROM `tasks` WHERE `task_id` LIKE '2'");
+            while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
+                $task_user_state2['task_user_state'] = str_replace('[', ',', $task_user_state2['task_user_state']);
+                $task_user_state2['task_user_state'] = str_replace(']', ',', $task_user_state2['task_user_state']);
+                $task_user_state2['task_user_state'] = str_replace('0', ',', $task_user_state2['task_user_state']);
+                $task_user_state2['task_user_state'] = str_replace('', ',,', $task_user_state2['task_user_state']);
+                $task_user_state2['task_user_state'] = str_replace('=', ',', $task_user_state2['task_user_state']);
+                $task_user_state = explode(",", $task_user_state2['task_user_state']);
+                $task_user_state_count = count($task_user_state, true) - 1;
+
+                while (-1 < $task_user_state_count) {
+
+                    // echo $task_user_state[$task_user_state_count] . ' == ' . $task_user_state[$task_user_state_count - 1] . '</br>';
+                    $keys[$task_user_state_count] = $task_user_state[$task_user_state_count];
+                    $values[$task_user_state_count - 1] = $task_user_state[$task_user_state_count - 1];
+
+                    $task_user_state_count = $task_user_state_count - 2;
+
+
+                }
+                $assoc = array_combine($keys, $values);
+                print_r($assoc);
+            }
+
+
             $result = mysqli_query($link, "SELECT `group_slaves` FROM `groups` WHERE `group_id` LIKE '$id'");
             while ($data = $result->fetch_assoc()) {
                 $data['group_slaves'] = str_replace('[', ',', $data['group_slaves']);
@@ -39,7 +65,10 @@ if (!isset($_GET['id'])) {
 
 
                 echo ('<form method="POST">
-                Добавить участника: <input name="text" type="textarea" value="Введите имя">
+                Добавить участника: <input name="text" type="textarea" value="Введите имя"> </br>
+                </form>
+                <form method="POST">
+                Добавить задачу: <input name="task_add" type="textarea" value="Введите название">
                 </form>');
 
                 if (!isset($_POST['text'])) {
@@ -59,7 +88,107 @@ if (!isset($_GET['id'])) {
                 }
 
 
-                echo (" Участники:    </br>");
+
+
+
+
+
+
+
+
+                echo ("Задачи:   </br>");
+
+
+                $group_tasks3 = mysqli_query($link, "SELECT `group_tasks` FROM `groups` WHERE `group_id` LIKE '$id'");
+                while ($group_tasks2 = $group_tasks3->fetch_assoc()) {
+                    $group_tasks2['group_tasks'] = str_replace('[', ',', $group_tasks2['group_tasks']);
+                    $group_tasks2['group_tasks'] = str_replace(']', ',', $group_tasks2['group_tasks']);
+                    $group_tasks2['group_tasks'] = str_replace('0', ',', $group_tasks2['group_tasks']);
+                    $group_tasks2['group_tasks'] = str_replace('', ',,', $group_tasks2['group_tasks']);
+                    $group_tasks = explode(",", $group_tasks2['group_tasks']);
+                    $group_tasks_count = count($group_tasks, true) - 1;
+                }
+
+
+                if (!isset($_POST['task_add'])) { // Задачи добавить
+                } else {
+                    $task_add = $_POST['task_add'];
+                    $task_id3 = mysqli_query($link, "SELECT `task_id` FROM `tasks` WHERE `task_name` LIKE '%$task_add%'");
+                    while ($task_id2 = $task_id3->fetch_assoc()) {
+                        $task_id = $task_id2['task_id'];
+                    }
+                    array_push($group_tasks, $task_id);
+                    sort($group_tasks);
+                    $taskkk = implode(",", $group_tasks);
+                    mysqli_query($link, "UPDATE `groups` SET `group_tasks`='$taskkk' WHERE `group_id` LIKE '$id'");
+                    echo '<script> window.location.href = "group_info.php?id=' . $id . '"; </script>';
+
+                }
+
+
+                while (-1 < $group_tasks_count) {
+                    $task_name2 = mysqli_query($link, "SELECT `task_name` FROM `tasks` WHERE `task_id` LIKE '$group_tasks[$group_tasks_count]'"); // имя тасков
+                    while ($task_name1 = $task_name2->fetch_assoc()) {
+                        $task_goal2 = mysqli_query($link, "SELECT `task_goal` FROM `tasks` WHERE `task_id` LIKE '$group_tasks[$group_tasks_count]'"); // имя тасков
+                        while ($task_goal1 = $task_goal2->fetch_assoc()) {
+                            $task_goal = $task_goal1["task_goal"];
+                        }
+                        $task_time2 = mysqli_query($link, "SELECT `task_time` FROM `tasks` WHERE `task_id` LIKE '$group_tasks[$group_tasks_count]'"); // имя тасков
+                        while ($task_time1 = $task_time2->fetch_assoc()) {
+                            $task_time = $task_time1["task_time"];
+                        }
+
+                        echo $task_name1['task_name'] . '. </br>   Необходимое количество выполнений - ' . $task_goal . '.</br> Крайнее время выполнения задачи  ' . $task_time;
+                        echo "</br>Приступившие к выполнению:    ";
+
+                        $task_user_state3 = mysqli_query($link, "SELECT `task_user_state` FROM `tasks` WHERE `task_id` LIKE '$group_tasks[$group_tasks_count]'");
+                        while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
+                            $task_user_state2['task_user_state'] = str_replace('[', ',', $task_user_state2['task_user_state']);
+                            $task_user_state2['task_user_state'] = str_replace(']', ',', $task_user_state2['task_user_state']);
+                            $task_user_state2['task_user_state'] = str_replace('0', ',', $task_user_state2['task_user_state']);
+                            $task_user_state2['task_user_state'] = str_replace('', ',,', $task_user_state2['task_user_state']);
+                            $task_user_state2['task_user_state'] = str_replace('=', ',', $task_user_state2['task_user_state']);
+                            $task_user_state = explode(",", $task_user_state2['task_user_state']);
+                            $task_user_state_count = count($task_user_state, true) - 1;
+
+                            while (-1 < $task_user_state_count) {
+                                $tassssk = $task_user_state;
+                                $task_user_state_count = $task_user_state_count - 1;
+
+                                // $user_name3 = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_id` LIKE '$user_count_task[$task_user_state_count_b]'");
+                                //  while ($user_name2 = $user_name3->fetch_assoc()) {
+                                //      $user_name = $user_name2['user_name'];
+                                //      echo '</br>' . $user_name . ' количество баллов ' . $user_id_task[$task_user_state_count_a];
+                                //   }
+
+                            }
+                        }
+
+
+
+
+
+                        echo '<form method="POST">
+                        <input name="delete_task' . $group_tasks_count . '" type="submit" value="удалить">
+                        </form>';
+                        if (!isset($_POST['delete_task' . $group_tasks_count . ''])) {
+                        } else {
+                            $group_tasks[$group_tasks_count] = "";
+                            $group_tasks_mas = implode(",", $group_tasks);
+                            mysqli_query($link, "UPDATE `groups` SET `group_tasks`='$group_tasks_mas' WHERE `group_id` LIKE '$id'");
+                            echo '<script> window.location.href = "group_info.php?id=' . $id . '"; </script>';
+                        }
+                    }
+                    $group_tasks_count = $group_tasks_count - 1;
+
+                }
+
+
+
+
+
+                $i = count($cart, true) - 1;
+                echo ("</br> Участники:    </br>");
                 while (-1 < $i) {
                     $result = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_id` LIKE '$cart[$i]'"); // имя юзеров
                     while ($row = $result->fetch_assoc()) {
@@ -82,11 +211,7 @@ if (!isset($_GET['id'])) {
 
         }
 
-        $group_id_check = mysqli_query($link, "SELECT `group_slaves` FROM `groups` WHERE `group_slaves` LIKE '$id'");
-        //  if ($group_id_check != $id) {
-        //      echo $id;
-        //     echo "Вы раб этой группы";
-        // }
+
     }
 
 

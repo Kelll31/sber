@@ -32,7 +32,8 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
 
     } else if ($role == "1") { // Права доступа    менеджер групп
 
-
+        echo ("<a href=edit.php?mode=0 >создать группу </a></br></br>");
+        echo ("<a href=edit.php?mode=1 >создать задачу </a></br></br>");
         $group_name2 = mysqli_query($link, "SELECT `group_name` FROM `groups` WHERE `group_user_admin` LIKE '$user_id'");
         while ($group_name1 = $group_name2->fetch_assoc()) {
             $group_name = $group_name1['group_name'];
@@ -65,7 +66,7 @@ if (mysqli_query($link, "SELECT `user_id` FROM `user` WHERE `user_hash` LIKE '$h
             }
 
 
-
+            
 
 
         }
