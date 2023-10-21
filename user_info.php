@@ -36,8 +36,37 @@ if (!isset($_GET['id'])) {
         while ($group_id1 = $group_id2->fetch_assoc()) {
             $group_id = $group_id1['group_id'];
         }
+
+        $suma = 0;
+        $task_user_state3 = mysqli_query($link, "SELECT `user_count` FROM `user` WHERE `user_id` LIKE '$user_id'");
+        while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
+            $task_user_state2['user_count'] = str_replace('[', ',', $task_user_state2['user_count']);
+            $task_user_state2['user_count'] = str_replace(']', ',', $task_user_state2['user_count']);
+            $task_user_state2['user_count'] = str_replace('0', ',', $task_user_state2['user_count']);
+            $task_user_state2['user_count'] = str_replace('', ',,', $task_user_state2['user_count']);
+            $task_user_state2['user_count'] = str_replace('=', ',', $task_user_state2['user_count']);
+            $task_user_state = explode(",", $task_user_state2['user_count']);
+            $task_user_state_count = count($task_user_state, true) - 1;
+
+            print_r($task_user_state);
+        }
+
+        while (-1 < $task_user_state_count) {
+            if ($task_user_state[$task_user_state_count] == $group_id2) {
+                $suma = $suma + 1;
+            }
+
+            $task_user_state_count = $task_user_state_count - 1;
+        }
+
+        echo $suma . '  выполнений';
+
+
+
+
         echo "Участник как раб - <a href='group_info.php?id=" . $group_id . "'>" . $group_name1['group_name'] . "</a> </br>";
     }
+
 
 }
 ?>
