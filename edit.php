@@ -148,7 +148,7 @@ include 'main_script.php';
                     color: #000000;
                     outline: none;
                 "></dt>
-                    <dt><input name="group_tasks" type="text" required placeholder="задачи группы " style="
+                    <dt><input name="group_tasks" type="text" required placeholder="задачи группы (id)" style="
                     border: none;
                     border-bottom: 1px solid #000000;
                     background-color: transparent;
