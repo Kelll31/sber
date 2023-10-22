@@ -225,10 +225,11 @@
                             echo '<p><h3>' . $task_name1['task_name'] . '.</h3> </br>   Необходимое количество выполнений - ' . $task_goal . '.</br> Крайнее время выполнения задачи  ' . $task_time;
                             echo "</p>Приступившие к выполнению:    ";
 
-                            $suma[$group_tasks_count] = 0;
+
 
                             $task_user_state3 = mysqli_query($link, "SELECT `user_name`,`user_count` FROM `user` WHERE `user_count` LIKE '%$group_tasks[$group_tasks_count]%'");
                             while ($task_user_state2 = $task_user_state3->fetch_assoc()) {
+                              $suma[$group_tasks_count] = 0;
                               $task_user_state2['user_count'] = str_replace('[', ',', $task_user_state2['user_count']);
                               $task_user_state2['user_count'] = str_replace(']', ',', $task_user_state2['user_count']);
                               $task_user_state2['user_count'] = str_replace('0', ',', $task_user_state2['user_count']);
@@ -378,16 +379,6 @@
                               $task_user_state_count = $task_user_state_count - 1;
                             }
 
-                            //print_r($task_user_state);
-                            if (!isset($_POST['add' . $group_tasks_count . ''])) {
-                            } else {
-                              array_push($task_user_state, $group_tasks[$group_tasks_count]);
-                              sort($task_user_state);
-                              $task_user_state = implode(",", $task_user_state);
-                              mysqli_query($link, "UPDATE `user` SET `user_count`='$task_user_state' WHERE `user_id` LIKE '$user_logined_id'");
-                              echo '<script> window.location.href = "group_info.php?id=' . $id . '"; </script>';
-                            }
-
                             echo $suma . '  выполнений';
 
                           }
@@ -402,9 +393,31 @@
                             $slave1['group_slaves'] = str_replace('=', ',', $slave1['group_slaves']);
                             $slave = explode(",", $slave1['group_slaves']);
                             if (in_array($user_id, $slave)) {
+
+
                               echo '<form method="POST">
-                        <input name="add' . $group_tasks_count . '" type="submit" value="Выполнил">
-                        </form>';
+                                    <input name="adddd' . $group_tasks[$group_tasks_count] . '" type="submit" value="Выполнил">
+                                    </form>';
+
+                              //print_r($task_user_state);
+                             // echo $group_tasks[$group_tasks_count];
+                              $push = $group_tasks[$group_tasks_count];
+
+                              
+                              if (!isset($_POST['adddd' . $push . ''])) {
+                              } else {
+
+                                array_push($task_user_state, $push);
+                                sort($task_user_state);
+                                $carttsasad = implode(",", $task_user_state);
+                                mysqli_query($link, "UPDATE `user` SET `user_count`='$carttsasad' WHERE `user_id` LIKE '$user_logined_id'");
+                                echo '<script> window.location.href = "group_info.php?id=' . $id . '"; </script>';
+                              }
+
+
+
+
+
                             } else {
                               echo '</br>У вас нет прав к выполнению задачи</br>';
                             }
@@ -486,8 +499,7 @@
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-            chart.draw(data, options);
-          }
+            chart.draw(data, options);   }
         </script>
         <div class="col-md-6 ">
 
