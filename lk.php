@@ -257,20 +257,53 @@
               if ($reg == "0") {
                 echo ('
   <form method="POST">
-  <div>
-    <input name="loginn" type="text" required placeholder="Логин" />
-  </div>
-  <div>
-    <input name="password" type="password" required placeholder="Пароль" />
-  </div>
-  <div class="d-flex ">
-    <input name="submitt" type="submit" value="Войти">
-  </div>
+    <input name="loginn" type="text" required placeholder="Логин" style="
+    border: none;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    width: 100%;
+    height: 45px;
+    color: #000000;
+    outline: none;
+">
+    <input name="password" type="password" required placeholder="Пароль" style="
+    border: none;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    width: 100%;
+    height: 45px;
+    color: #000000;
+    outline: none;
+">
+    <input name="submitt" type="submit" value="Войти" style="
+    style=&quot;
+                    display: inline-block;
+                    padding: 10px 45px;
+                    background-color: #7335b7;
+                    color: #ffffff;
+                    border-radius: 5px;
+                    -webkit-transition: all 0.3s;
+                    transition: all 0.3s;
+                    border: 1px solid #7335b7;
+                &quot;;
+">
+
 </form>
 <form method="POST">
-  <input name="reg" type="submit" value="Вход\регистрация">
+  <input name="reg" type="submit" value="Вход\регистрация" style="
+  style=&quot;
+                  display: inline-block;
+                  padding: 10px 45px;
+                  background-color: #7335b7;
+                  color: #ffffff;
+                  border-radius: 5px;
+                  -webkit-transition: all 0.3s;
+                  transition: all 0.3s;
+                  border: 1px solid #7335b7;
+              &quot;;
+">
+<div id="vk_auth"></div>
 </form>
-</div>
 
 
 <div id="vk_auth"></div>
@@ -306,17 +339,63 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
 
                 echo ('<form method="POST">
               
-  Имя <input name="username" type="text" required>
-  </div>
-  Логин <input name="userlogin" type="text" required><br>
-  Пароль <input name="userpassword" type="password" required><br>
-  <input name="reg" type="submit" value="Регистрация">
+  <input name="username" type="text" required placeholder = "Имя"style="
+  border: none;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  width: 100%;
+  height: 45px;
+  color: #000000;
+  outline: none;
+">
+  <input name="userlogin" type="text" required placeholder = "Логин"style="
+  border: none;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  width: 100%;
+  height: 45px;
+  color: #000000;
+  outline: none;
+"><br>
+  <input name="userpassword" type="password" required placeholder = "Пароль"style="
+  border: none;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  width: 100%;
+  height: 45px;
+  color: #000000;
+  outline: none;
+"><br>
+  <input name="reg" type="submit" value="Регистрация" style="
+  style=&quot;
+                  display: inline-block;
+                  padding: 10px 45px;
+                  background-color: #7335b7;
+                  color: #ffffff;
+                  border-radius: 5px;
+                  -webkit-transition: all 0.3s;
+                  transition: all 0.3s;
+                  border: 1px solid #7335b7;
+              &quot;;
+">
   </form>
   <form method="POST">
-  <input name="submitt" type="submit" value="Вход\регистрация ">
+  <input name="submitt" type="submit" value="Вход\регистрация " style="
+  style=&quot;
+                  display: inline-block;
+                  padding: 10px 45px;
+                  background-color: #7335b7;
+                  color: #ffffff;
+                  border-radius: 5px;
+                  -webkit-transition: all 0.3s;
+                  transition: all 0.3s;
+                  border: 1px solid #7335b7;
+              &quot;;
+">
+<div id="vk_auth"></div>
   </form>
 
-  <div id="vk_auth"></div>
+  
   <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168" charset="windows-1251"></script>
   <script type="text/javascript">
       VK.init({ apiId: 51775850 });
@@ -360,7 +439,10 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
         <div class="col-md-6 col-lg-7 px-0">
           <div class="map_container">
             <div class="map">
-              <div id="googleMap"></div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1101.5457326423443!2d37.61734285342094!3d54.196125269795196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41344152d3f2e80b%3A0xabf83791a029088d!2z0KHQsdC10YDQkdCw0L3Qug!5e0!3m2!1sru!2sru!4v1697942371334!5m2!1sru!2sru"
+                width="75%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
@@ -382,15 +464,14 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
                 Кадровый взгляд
               </h4>
               <p>
-                Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
-                words, combined with a handful
+                Платформа для упрощения процесса мониторинга производительности сотрудников компании
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-2 mx-auto">
             <div class="info_link_box">
               <h4>
-                Links
+                Ссылки
               </h4>
               <div class="info_links">
                 <a class="" href="index.php">
@@ -403,61 +484,47 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
                   Сервис
                 </a>
                 <a class="" href="contact.php">
-                  Contact Us
+                  Свяжитесь с нами
                 </a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 ">
             <h4>
-              Subscribe
+              Подписаться
             </h4>
             <form action="#">
-              <input type="text" placeholder="Enter email" />
+              <input type="text" placeholder="Введите почту" />
               <button type="submit">
-                Subscribe
+                Подписаться
               </button>
             </form>
           </div>
           <div class="col-md-6 col-lg-3 mb-0 ml-auto">
             <div class="info_contact">
               <h4>
-                Address
+                Контакты
               </h4>
               <div class="contact_link_box">
                 <a href="">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
                   <span>
-                    Location
+                    Расположение
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-phone" aria-hidden="true"></i>
                   <span>
-                    Call +01 1234567890
+                    Звоните +7 9549597654
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   <span>
-                    demo@gmail.com
+                    cadreye@gmail.com
                   </span>
                 </a>
               </div>
-            </div>
-            <div class="info_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -471,7 +538,7 @@ VK.Widgets.Auth("vk_auth", { authUrl: "lk.php" });
       <div class="container">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a>
+          <a href="https://adrenalinerush.ru">Adrenaline</a>
         </p>
       </div>
     </footer>

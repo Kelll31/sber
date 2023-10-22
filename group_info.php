@@ -56,7 +56,15 @@
                 <a class="nav-link" href="index.php">Главная <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="about.php"> О группе</a>
+
+                <?php
+                echo '<a class="nav-link" href="group_info.php?id=' . $_GET['id'] . '"> О группе</a>';
+
+
+
+                ?>
+
+
               </li>
             </ul>
             <div class="quote_btn-container">
@@ -103,12 +111,14 @@
                   }
 
                   $id = $_GET['id'];
-                  $group_id2 = mysqli_query($link, "SELECT `group_name` FROM `groups` WHERE `group_id` LIKE
-    '$id'"); // имя
+                  $group_id2 = mysqli_query($link, "SELECT `group_name`,`group_text` FROM `groups` WHERE `group_id` LIKE '$id'"); // имя
                   while ($group_id1 = $group_id2->fetch_assoc()) {
                     $group_id = $group_id1["group_name"];
-                    echo "<h4>Группа - " . $group_id1['group_name'] . "</h4>  ";
+                    $group_text = $group_id1["group_text"];
+                    echo "<h4>Группа - " . $group_id1['group_name'] . "</h4><p>" . $group_text . "</p>";
                   }
+
+
 
                   $group_user_admin2 = mysqli_query($link, "SELECT `group_user_admin` FROM `groups` WHERE `group_id` LIKE '$id'");
                   while ($group_user_admin1 = $group_user_admin2->fetch_assoc()) {
@@ -124,17 +134,14 @@
 
 
 
-                      $result = mysqli_query($link, "SELECT `group_slaves` FROM `groups` WHERE `group_id` LIKE '$id'");
-                      while ($data = $result->fetch_assoc()) {
-                        $data['group_slaves'] = str_replace('[', ',', $data['group_slaves']);
-                        $data['group_slaves'] = str_replace(']', ',', $data['group_slaves']);
-                        $data['group_slaves'] = str_replace('0', ',', $data['group_slaves']);
-                        $data['group_slaves'] = str_replace('', ',,', $data['group_slaves']);
-                        $cart = explode(",", $data['group_slaves']);
-                        $i = count($cart, true) - 1;
-                        $ii = 1;
-                        // echo ($data['group_slaves']);
-                
+                      $group_slaves2 = mysqli_query($link, "SELECT `group_slaves` FROM `groups` WHERE `group_id` LIKE '$id'");
+                      while ($group_slaves1 = $group_slaves2->fetch_assoc()) {
+                        $group_slaves1['group_slaves'] = str_replace('[', ',', $group_slaves1['group_slaves']);
+                        $group_slaves1['group_slaves'] = str_replace(']', ',', $group_slaves1['group_slaves']);
+                        $group_slaves1['group_slaves'] = str_replace('0', ',', $group_slaves1['group_slaves']);
+                        $group_slaves1['group_slaves'] = str_replace('', ',,', $group_slaves1['group_slaves']);
+                        $cart = explode(",", $group_slaves1['group_slaves']);
+
 
                         echo ('
                         <div class="info_section form input" style="
@@ -265,7 +272,7 @@
                         border: 1px solid #f8842b;
                         margin-top: 15px;">
 
-                        удалить</button></a>
+                        Удалить задачу</button></a>
                         </form>
                         ';
                             if (!isset($_POST['delete_task' . $group_tasks_count . ''])) {
@@ -289,13 +296,11 @@
                         while (-1 < $i) {
                           $result = mysqli_query($link, "SELECT `user_name` FROM `user` WHERE `user_id` LIKE '$cart[$i]'"); // имя юзеров
                           while ($row = $result->fetch_assoc()) {
+                            echo '<form method="POST" >';
                             echo "<dt>  <a href='user_info.php?id=" . $cart[$i] . "'>" . $row['user_name'] . "</a>";
                             echo '
                             
-
-                            <form method="POST" >
-                        
-                       <a> <button name="delete' . $i . '" type="submit" value="удалить" style=    " width: 100%;
+                       <a> <button name="delete' . $i . '" type="submit" value="&#10008;" style=    " width: 100%;
                         text-align: center;
                         display: contents;
                         padding: 10px 55px;
@@ -306,8 +311,7 @@
                         transition: all 0.3s;
                         border: 1px solid #f8842b;
                         margin-top: 15px;">
-
-                        удалить</button></a>
+                        &#10008;</button></a>
                         </form>
                         </dt>  </dl>
                         ';
@@ -389,9 +393,23 @@
                           }
 
 
-                          echo '<form method="POST">
+                          $slave2 = mysqli_query($link, "SELECT `group_slaves`	 FROM `groups` WHERE `group_id` LIKE '$id'");
+                          while ($slave1 = $slave2->fetch_assoc()) {
+                            $slave1['group_slaves'] = str_replace('[', ',', $slave1['group_slaves']);
+                            $slave1['group_slaves'] = str_replace(']', ',', $slave1['group_slaves']);
+                            $slave1['group_slaves'] = str_replace('0', ',', $slave1['group_slaves']);
+                            $slave1['group_slaves'] = str_replace('', ',,', $slave1['group_slaves']);
+                            $slave1['group_slaves'] = str_replace('=', ',', $slave1['group_slaves']);
+                            $slave = explode(",", $slave1['group_slaves']);
+                            if (in_array($user_id, $slave)) {
+                              echo '<form method="POST">
                         <input name="add' . $group_tasks_count . '" type="submit" value="Выполнил">
                         </form>';
+                            } else {
+                              echo '</br>У вас нет прав к выполнению задачи</br>';
+                            }
+
+                          }
 
 
                         }
@@ -414,10 +432,20 @@
         </div>
         <?php
 
-        sort($suma);
-        $coc = count($suma);
-        //print_r($suma); 
+        $admin2 = mysqli_query($link, "SELECT `group_user_admin` FROM `groups` WHERE `group_id` LIKE '$id'");
+        while ($admin1 = $admin2->fetch_assoc()) {
+          if (!isset($admin1['group_user_admin'])) {
+          } else {
+            if ($group_user_admin == $user_id) {
+
+              sort($suma);
+              $coc = count($suma);
+              //print_r($suma); 
         
+            }
+          }
+        }
+
 
 
         ?>
@@ -431,15 +459,21 @@
 
               ['Task', 'Hours per Day'],
               <?php
+              if ($group_user_admin == $user_id) {
+                for ($i = 0; $i < $coc; $i++) {
 
+                  echo "
+                    ['Задача $i', $suma[$i]],";
 
+                }
 
-              for ($i = 0; $i < $coc; $i++) {
-
+              } else {
                 echo "
-                ['Задача $i', $suma[$i]],";
-
+                ['Отсутствие прав доступа', 1],";
               }
+
+
+
 
 
               ?>
@@ -483,88 +517,72 @@
                 Кадровый взгляд
               </h4>
               <p>
-                Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
-                words, combined with a handful
+                Платформа для упрощения процесса мониторинга производительности сотрудников компании
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-2 mx-auto">
             <div class="info_link_box">
               <h4>
-                Links
+                Ссылки
               </h4>
               <div class="info_links">
                 <a class="" href="index.php">
                   Главная
                 </a>
-                <a class="" href="about.php">
+                <a class="" href="">
                   О нас
                 </a>
                 <a class="" href="service.php">
                   Сервис
                 </a>
                 <a class="" href="contact.php">
-                  Contact Us
+                  Свяжитесь с нами
                 </a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 ">
             <h4>
-              Subscribe
+              Подписаться
             </h4>
             <form action="#">
-              <input type="text" placeholder="Enter email" />
+              <input type="text" placeholder="Введите почту" />
               <button type="submit">
-                Subscribe
+                Подписаться
               </button>
             </form>
           </div>
           <div class="col-md-6 col-lg-3 mb-0 ml-auto">
             <div class="info_contact">
               <h4>
-                Address
+                Контакты
               </h4>
               <div class="contact_link_box">
                 <a href="">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
                   <span>
-                    Location
+                    Расположение
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-phone" aria-hidden="true"></i>
                   <span>
-                    Call +01 1234567890
+                    Звоните +7 9549597654
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   <span>
-                    demo@gmail.com
+                    cadreye@gmail.com
                   </span>
                 </a>
               </div>
-            </div>
-            <div class="info_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- end info section -->
 
     <!-- footer section -->
@@ -572,7 +590,7 @@
       <div class="container">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a>
+          <a href="https://adrenalinerush.ru">Adrenaline</a>
         </p>
       </div>
     </footer>

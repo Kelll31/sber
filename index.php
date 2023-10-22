@@ -105,15 +105,14 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Digital Marketing Experts
+                      Анализируй работу сотрудников
                     </h1>
                     <p>
-                      Aenean scelerisque felis ut orci condimentum laoreet. Integer nisi nisl, convallis et augue sit
-                      amet, lobortis semper quam.
+                    Платформа для упрощения процесса мониторинга производительности сотрудников компании
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Contact Us
+                      <a href="lk.php" class="btn1">
+                      Начать работу
                       </a>
                     </div>
                   </div>
@@ -132,15 +131,14 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Digital Marketing Experts
+                    Анализируй работу сотрудников
                     </h1>
                     <p>
-                      Aenean scelerisque felis ut orci condimentum laoreet. Integer nisi nisl, convallis et augue sit
-                      amet, lobortis semper quam.
+                    Платформа для упрощения процесса мониторинга производительности сотрудников компании
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Contact Us
+                      <a href="lk.php" class="btn1">
+                        Начать работу
                       </a>
                     </div>
                   </div>
@@ -159,15 +157,14 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Digital Marketing Experts
+                    Анализируй работу сотрудников
                     </h1>
                     <p>
-                      Aenean scelerisque felis ut orci condimentum laoreet. Integer nisi nisl, convallis et augue sit
-                      amet, lobortis semper quam.
+                    Платформа для упрощения процесса мониторинга производительности сотрудников компании
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Contact Us
+                      <a href="lk.php" class="btn1">
+                      Начать работу
                       </a>
                     </div>
                   </div>
@@ -192,10 +189,10 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Our Сервис
+          Наши Возможности
         </h2>
         <p>
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Кадровый Взгляд предоставляет своим пользователям обширный диапозон возможностей упростить жизнь
         </p>
       </div>
       <div class="row">
@@ -206,14 +203,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                Link Building
+                Связь
               </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                Быстро и удобно донести нужную информацию до подчинённых
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -227,14 +224,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                On page SEO
+                Статистика
               </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                Удобный просмотр величин производительности труда работников
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -248,14 +245,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                Online Marketing
+                Уведомления
               </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                Приходят уведомления, облегчающие отслеживание объёма работы
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее 
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -269,14 +266,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                Email Marketing
+                Обратная связь
               </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                Информация от сотрудников отображена в ЛК руководителя 
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -286,7 +283,7 @@
       </div>
       <div class="btn-box">
         <a href="">
-          View More
+          Подробнее
         </a>
       </div>
     </div>
@@ -302,17 +299,16 @@
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                О нас Us
+                О нас
               </h2>
             </div>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-              the middle of text. All
+            Данная платформа позволяет сотруднику вносить данные о проделанной работе в рамках конкретной задачи, 
+            отслеживать дедлайны и свой прогресс в соотношении с планом. В свою очередь руководитель может отслеживать 
+            информацию по всем сотрудникам подконтрольной группы и получать статистику по работе группы в целом.  
             </p>
             <a href="">
-              Read More
+              Подробнее
             </a>
           </div>
         </div>
@@ -334,7 +330,7 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Our Case Studies
+          Мы помогаем 
         </h2>
       </div>
       <div class="row">
@@ -345,15 +341,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                Sit amet consectetur adipisicing elit
+                Тяжело обрабатывать отчёты сотрудников?
               </h5>
               <p>
-                Alteration in some form, by injected humour, or randomised words which don't look even slightly
-                believable.
+                Для этого у нас есть специальная программа, которая анализирует все данные ваших сотрудников  
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -367,15 +362,14 @@
             </div>
             <div class="detail-box">
               <h5>
-                Excepturi placeat nihil eos maxime
+                Тяжело донести до всех сотрудников нужную задачу?
               </h5>
               <p>
-                Alteration in some form, by injected humour, or randomised words which don't look even slightly
-                believable.
+                Для этого у нас удобная рассылка. Все сотрудники увидят, какую именно задачу им нужно выполнять
               </p>
               <a href="">
                 <span>
-                  Read More
+                  Подробнее
                 </span>
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
@@ -393,7 +387,7 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Testimonial
+          Обратная связь
         </h2>
       </div>
     </div>
@@ -411,7 +405,7 @@
                     <div class="client_info">
                       <div class="client_name">
                         <h5>
-                          Morojink
+                          Билл Гейтс
                         </h5>
                         <h6>
                           Customer
@@ -420,13 +414,7 @@
                       <i class="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                      dolore eu fugia
+                    Благодаря программе "Кадровый взгляд" моя команда смогла выпустить новую версию Windows 12 и почистить 150кг. мандаринов в 2 раза быстрее положенного срока
                     </p>
                   </div>
                 </div>
@@ -446,7 +434,7 @@
                     <div class="client_info">
                       <div class="client_name">
                         <h5>
-                          Morojink
+                          Илон Маск
                         </h5>
                         <h6>
                           Customer
@@ -455,13 +443,10 @@
                       <i class="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                      dolore eu fugia
+                    Огромное спасибо создателям программы "Кадровый взгляд", 
+                    они помогли мне оптимизировать работу моих инженеров, отследить, 
+                    что двое из них, вместо загрузки ракетного топлива, только играли в Доту 2. 
+                    Благодаря их увольнению мы начали работать на 50% эффективнее
                     </p>
                   </div>
                 </div>
@@ -481,7 +466,7 @@
                     <div class="client_info">
                       <div class="client_name">
                         <h5>
-                          Morojink
+                          Лил Гол
                         </h5>
                         <h6>
                           Customer
@@ -490,13 +475,7 @@
                       <i class="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                      dolore eu fugia
+                      Я использовал программу Кадровый Взгляд, чтобы удобно доносить задачи до всех своих 15000000 сотрудников. Все успешно отчитались о её выполнении. Спасибо авторам. Они получает +15 социальный рейтинг и кошкожена
                     </p>
                   </div>
                 </div>
@@ -534,19 +513,18 @@
                 Кадровый взгляд
               </h4>
               <p>
-                Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
-                words, combined with a handful
+              Платформа для упрощения процесса мониторинга производительности сотрудников компании
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-2 mx-auto">
             <div class="info_link_box">
               <h4>
-                Links
+                Ссылки
               </h4>
               <div class="info_links">
                 <a class="" href="index.php">
-                  Home
+                  Главная
                 </a>
                 <a class="" href="about.php">
                   О нас
@@ -555,61 +533,47 @@
                   Сервис
                 </a>
                 <a class="" href="contact.php">
-                  Contact Us
+                  Свяжитесь с нами
                 </a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 ">
             <h4>
-              Subscribe
+              Подписаться
             </h4>
             <form action="#">
-              <input type="text" placeholder="Enter email" />
+              <input type="text" placeholder="Введите почту" />
               <button type="submit">
-                Subscribe
+                Подписаться
               </button>
             </form>
           </div>
           <div class="col-md-6 col-lg-3 mb-0 ml-auto">
             <div class="info_contact">
               <h4>
-                Address
+                Контакты
               </h4>
               <div class="contact_link_box">
                 <a href="">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
                   <span>
-                    Location
+                    Расположение
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-phone" aria-hidden="true"></i>
                   <span>
-                    Call +01 1234567890
+                    Звоните +7 9549597654
                   </span>
                 </a>
                 <a href="">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   <span>
-                    demo@gmail.com
+                    cadreye@gmail.com
                   </span>
                 </a>
               </div>
-            </div>
-            <div class="info_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -619,14 +583,6 @@
     <!-- end info section -->
 
     <!-- footer section -->
-    <footer class="footer_section">
-      <div class="container">
-        <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a>
-        </p>
-      </div>
-    </footer>
     <!-- footer section -->
   </div>
 
